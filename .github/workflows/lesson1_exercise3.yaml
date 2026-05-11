@@ -13,7 +13,8 @@ jobs:
         run: |
           # The following will choose between `run` and `halt` randomly
           # and set the output of the job to the chosen value
-          if [ $((RANDOM % 2)) -eq 0 ]; then
+          # if [ $((RANDOM % 2)) -eq 0 ]; then
+          if [ 0 -eq 0 ]; then
             # set the output of the job to `run`
             echo "state=run" >> "$GITHUB_OUTPUT"
             echo "Running the job `test`..."
