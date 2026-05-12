@@ -1,0 +1,15 @@
+name: "Lesson 3 - Exercise 1"
+
+inputs:
+    actor:
+        description: "The person who will receive the greeting"
+        required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Greetings message
+      run: |
+        echo "Well done: $ACTOR you've implemented reusable workflows successfully!"
+      env:
+        ACTOR: ${{ inputs.actor }}
