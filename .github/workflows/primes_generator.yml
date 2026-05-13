@@ -13,7 +13,13 @@ jobs:
       - name: Generate the first 10 prime
         run: |
           import math
+          import os
 
+          # If the file prime.txt exists in the current path, exit with 0
+          if os.path.exists('primes.txt'):
+            print('File primes.txt already exists. Exiting...')
+            exit(0)
+            
           # The cursor
           count = 3
 
@@ -50,6 +56,13 @@ jobs:
       # Add your solution below this line
       # ----------------------------------
       # ...
+      - name: Cache Primes
+        id: cache-primes
+        uses: actions/cache@v5
+        with:
+          path: primes.txt
+          key: primes-${{ hashFiles('**/primes.txt') }}
+        
       - name: Upload file
         uses: actions/upload-artifact@v7
         with:
