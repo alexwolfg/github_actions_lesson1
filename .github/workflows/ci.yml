@@ -21,6 +21,6 @@ jobs:
 
           ## Add your answer below this line
 
-          echo "# API call response" >> GITHUB_STEP_SUMMARY
-          echo "Title word count: $title_words_count" >> GITHUB_STEP_SUMMARY
-          echo "Body word count: $body_words_count" >> GITHUB_STEP_SUMMARY
+          echo "# API call response" >> $GITHUB_STEP_SUMMARY
+          echo "Title word count: $title_words_count" >> $GITHUB_STEP_SUMMARY
+          echo "Body word count: $body_words_count" >> $GITHUB_STEP_SUMMARY
