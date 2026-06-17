@@ -1,0 +1,44 @@
+name: pages update
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+        
+      - name: Deploy to GPages
+        id: deployment
+        uses: actions/deply-pages@v4
+
+      - name: Report status
+        run: |
+          echo "# Deployment status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "Deployed ${{ github.ref }} to ${{ steps.deployment.outputs.pages_url }}" >> $GITHUB_STEP_SUMMARY
